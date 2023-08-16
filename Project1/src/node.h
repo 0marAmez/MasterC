@@ -1,5 +1,5 @@
-#ifndef __NODE__
-#define __NODE__
+#ifndef NODE_H
+#define NODE_H
 
 #include <stdint.h>
 
