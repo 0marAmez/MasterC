@@ -12,7 +12,7 @@ SOURCES := $(wildcard $(SRC_DIR)/*.c)
 # List of object files
 OBJECTS := $(patsubst $(SRC_DIR)/%.c,$(BIN_DIR)/%.o,$(SOURCES))
 # Name of the executable
-EXECUTABLE := $(BIN_DIR)/my_program
+EXECUTABLE := $(BIN_DIR)/main
 
 # Default target
 all: $(EXECUTABLE)
