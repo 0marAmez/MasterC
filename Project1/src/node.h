@@ -2,8 +2,10 @@
 #define NODE_H
 
 #include <stdint.h>
+#include<stdio.h>
 
-typedef struct  Node Node;
+
+typedef struct Node Node;
  
  struct Node{
     Node *left;
@@ -11,8 +13,10 @@ typedef struct  Node Node;
     uint8_t symbol;
     uint64_t frequency;
  };
- 
+
+Node *node_create(uint8_t symbol, uint64_t frequency);
+Node* join_node(Node*right,Node*left);
+void delete_node(Node**ptr);
 
 
-
-#endif // MACRO
+#endif
