@@ -1,6 +1,10 @@
-#include<stdio.h>
+#include "stringlib.h"
 
-int main(int argc, char** argv){
-    printf("Hello World \n");
+int main(void){
+    char*str = "Hello my name is Peter Parker";
+    String*s =  newString(str);
+    printf("Testing String: %s\n",s->str);
+    deleteString(&s);
+    
     return 0; 
 }

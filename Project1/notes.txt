@@ -1,0 +1,1 @@
+A const char* is a pointer to a constant character (read-only character) or a pointer to a constant C-style string.

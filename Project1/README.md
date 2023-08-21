@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this project I'll trying to recreate a Huffman Coding program.
+In this project I'll be creating my own string library to ease problems with strings.
 
 ## Contributors
 
