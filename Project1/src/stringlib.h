@@ -5,19 +5,17 @@
 #ifndef STRINGLIB_H
 #define STRINGLIB_H
 
-    typedef struct String String;
-    struct String{
-        char*str;
-        int length;   
-    };
-    // Constructor
-    String* newString(const char*str);
-    // Substring method, given the started index and the amount of characters will return a substring
-    String* substr(int i, int n);
-    // Destructor
-    void    deleteString(String**str);
+
+
+    /* This function creates a subtring of another string.
+    * function: substr
+    * parameter: char str.int i the index where you want the substring to begin, int n the amount of characters that you want use for the new string 
+    * return: char*, it returns a char* pointer that used memory allocation
+    */
+    char* substr(const char*str,int i, int n);
+
     
     
 
 
-#endif // MACRO
+#endif

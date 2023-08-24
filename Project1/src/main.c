@@ -2,9 +2,7 @@
 
 int main(void){
     char*str = "Hello my name is Peter Parker";
-    String*s =  newString(str);
-    printf("Testing String: %s\n",s->str);
-    deleteString(&s);
-    
+    char*new_str = substr(str,1,7);
+    printf("new string: %s\n", new_str);
     return 0; 
 }
