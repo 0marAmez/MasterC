@@ -1,0 +1,102 @@
+In Makefiles, both = and := are used for variable assignment, but they have different behaviors in terms of when the value of the variable is expanded.
+
+1. '=' (Simple Assignment):
+The = operator assigns a value to a variable with "lazy" or deferred expansion. This means that the right-hand side of the assignment is not expanded until 
+the variable is actually used. As a result, if you modify the variable later, the new value will take effect wherever the variable is used.
+
+Example: 
+
+    VARIABLE = initial value
+    TARGET = $(VARIABLE) more text
+
+    VARIABLE = new value
+
+    all:
+        @echo $(TARGET)
+
+
+In the example above, the output will be: "new value more text"
+
+2. ':=' (Immediate Assignment):
+The := operator is used for immediate expansion. The right-hand side of the assignment is expanded at the point of assignment, and the resulting value is stored in the 
+variable. This means that any subsequent changes to the variable won't affect its assigned value.
+
+Example:
+
+    VARIABLE := initial value
+    TARGET := $(VARIABLE) more text
+
+    VARIABLE := new value
+
+    all:
+        @echo $(TARGET)
+
+In this case, the output will be: "initial value more text"
+
+
+Makefile break down:
+
+    # Compiler
+    CC := gcc       => This line defines a variable CC that holds the name of the compiler to be used. 
+                        In this case, it's set to gcc.
+
+    # Compiler flags
+    CFLAGS := -Wall -Wextra -std=c11        => -Wall and -Wextra enable additional warning messages, which can help you catch potential issues 
+                                                in your code. -std=c11 specifies that you are using the C11 standard.
+
+    # Source directory
+    SRC_DIR := src          => varible to store the name of the directory where your C source files are located. 
+
+    # Binary directory
+    BIN_DIR := bin          => varible to store the name of the directory where you want your compiled binaries to be placed,
+
+    # List of source files
+    SOURCES := $(wildcard $(SRC_DIR)/*.c)       => This line uses the wildcard function to generate a list of source file paths by 
+                                                searching for all .c files in the source directory ($(SRC_DIR)). The SOURCES variable 
+                                                will hold this list of source file paths.
+    
+    # List of object files
+    OBJECTS := $(patsubst $(SRC_DIR)/%.c,$(BIN_DIR)/%.o,$(SOURCES))     => Here, the patsubst function is used to transform each source file path in the SOURCES list 
+                                                                        to a corresponding object file path in the binary directory. For example, if you have src/main.c, 
+                                                                        it will become bin/main.o in the OBJECTS list.
+
+    # Name of the executable
+    EXECUTABLE := $(BIN_DIR)/main         => This line sets the  EXECUTABLE variable to the full path of the executable you want to create. 
+                                            In this example, it's set to bin/my_program.
+
+    # Default target
+    all: $(EXECUTABLE)                    => This line defines a target named all, which is the default target that will be executed when you 
+                                          run make without specifying a target.
+
+    # Rule to compile source files into object files
+    $(BIN_DIR)/%.o: $(SRC_DIR)/%.c          =>  This is the target of the rule. It represents the pattern for object files (%.o) located in the binary directory ($(BIN_DIR)),
+                                            This is the prerequisite of the rule. It represents the pattern for C source files (%.c) located in the source directory ($(SRC_DIR)).
+        @mkdir -p $(BIN_DIR)                => This line uses the mkdir command to create the binary directory ($(BIN_DIR)) if it doesn't exist. The -p flag ensures that the command 
+                                            doesn't throw an error if the directory already exists.
+        $(CC) $(CFLAGS) -c $< -o $@         => '$<' this is an automatic variable representing the first prerequisite (dependency) (in this case, the C source files).
+                                            '$@' is a special variable that represents the target (.o files) of a rule. Makefiles are used to define a set of rules to build target 
+                                            files from source files, and each rule consists of a target, dependencies, and a recipe. 
+
+    # Rule to link object files into the executable
+    $(EXECUTABLE): $(OBJECTS)   
+        $(CC) $(CFLAGS) $^ -o $@
+                                            => This rule describes how to link the object files ($(OBJECTS)) into the final executable ($(EXECUTABLE)). The $^ variable represents all prerequisites, 
+                                            which are the object files. It uses the compiler to perform the linking.
+
+    # Clean rule to remove generated files
+    clean:
+        rm -rf $(BIN_DIR)                   => Finally, the clean rule is defined to remove the generated files. When you run make clean, it will delete the binary directory and its contents.
+                                                The -r option stands for "recursive." When used with the rm command, it allows you to remove directories and their contents in addition to individual files. 
+                                                The -f option stands for "force." When used with the rm command, it suppresses most error messages and prompts that might occur when attempting to remove files 
+                                                or directories that don't exist or are write-protected. It's used to force the removal without asking for confirmation.
+    
+    .PHONY: all clean                       => These lines mark the all and clean targets as "phony" targets, indicating that they are not actually associated with files. 
+                                            This prevents issues where a file named all or clean could interfere with the target rules.
+
+
+
+ 
+
+
+    
+
