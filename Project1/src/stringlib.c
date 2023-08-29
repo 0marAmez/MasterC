@@ -1,44 +1,76 @@
 #include "stringlib.h"
 
-// Substring method, given the started index and the amount of characters will return a substring
-char* substr(const char*str,int index, int n){
-// ERROR CHECKING:
-    // Checks if the string is Null before the operation
-    if(str == NULL){
-        perror("**ERROR:Null pointer, invalid operation.");
-        exit(EXIT_FAILURE);
-    }
-    if(n>strlen(str)){
-        perror("**ERROR:n is higher than the size of 'str.'");
-        exit(EXIT_FAILURE);
-    }
 
-    
-    /*
-        substr_size =  the size of the new string
-        last_index = the last index where the loop will stop looping in str
-    */
-    int substr_size,last_index;
-    // check if you want to create of substr of n-size or strlen(str)-index size
-    if(n==0){
-        substr_size = strlen(str)-index;
-        last_index = strlen(str);
-    }else{
-        substr_size = n;
-        last_index = index+n;
+// This function creates a subtring from a given string.
+char* substr(const char*str,size_t pos, size_t len){
+    // If the string is NULL then the function will return null.
+    if(str == NULL){
+        fprintf(stderr, "**ERROR: Invalid argument: NULL pointer.\n");
+        return NULL;
     }
-    printf("n_characters: %d \n",substr_size);
-    
-    // substring to be rerturn
-    char*sub_str = (char*)malloc(substr_size+1);
-    // integer to loop through new sub_string created
-    int j = 0;
-    // loop used to loop through the characters of str to create a new stringS
-    for(int i = index; i<last_index; i++){
-        sub_str[j++] = str[i]; 
+    // If the pos+len exceeds the bounds of the given string then it will return null.
+    if((pos+len)>strlen(str)){
+        fprintf(stderr, "**ERROR: Substring indices are out of bounds.\n");
+        return NULL;
+    }
+    int unsigned n; // last index of the substr in str
+    int unsigned substr_len; // length of the substr
+    // if the user does not specify the length of substr it will use the rest of the characters to create the substr
+    if(len == 0){
+        substr_len = strlen(str)-pos;
+        n = strlen(str);
+    }else{
+        substr_len = len;
+        n = pos+len;
+    }
+    /*
+    sub_string to be rutrned:
+
+    In the example provided earlier, the use of a cast (char *) 
+    is necessary when calling the malloc function for memory allocation. 
+    This is because malloc returns a void * (void pointer), which is a generic 
+    pointer type that can point to any type of memory.
+    */
+    char*sub_str = (char*)malloc(substr_len+1);
+    unsigned int k = 0; // interator for sub_str
+    // Loop to copy characters into the new sub_str
+    for(unsigned int i = pos; i<n ; i++){
+            sub_str[k] = str[i];
+            k++;
     }
     // Null terminator
-    sub_str [substr_size] = '\0';
-    // printf("%s\n",sub_str);
+    sub_str[substr_len] = '\0';
     return sub_str;
+}
+// This function searches the string for the first occurrence of the substr.
+size_t find(const char*str, const char* sub_str){
+    // Check if the strings are empty or not
+    if(str == NULL || sub_str == NULL){
+        fprintf(stderr, "**ERROR: Invalid argument: NULL pointer.\n");
+        return 0;
+    }
+    unsigned int str_n = strlen(str);
+    unsigned int sub_str_n = strlen(sub_str);
+    unsigned int j = 0;
+    size_t pos = 0;
+
+    for(unsigned int i = 0; i<str_n; i++){
+        if(str[i] == sub_str[j]){
+            printf("%c \n",str[i]);
+            pos = i;
+            j++;
+            if(j == sub_str_n){
+                break;
+            }
+        }else{
+            pos = 0;
+            j = 0;
+        }
+    }
+
+    if(pos!=0){
+        return pos-(sub_str_n-1);
+    }else{
+        return 0;
+    }
 }
