@@ -30,8 +30,29 @@
     */
     size_t find(const char*str, const char* sub_str);
 
+    char *str_replace(const char *str, const char *old_substring, const char *new_substring);
+
+    char *str_replace(const char *str, const char *old_substring, const char *new_substring);
     
+    char *str_reverse(const char *str);
+
+    char *str_trim(const char *str);
+
+    char *str_upper(const char *str);
     
+    char *str_lower(const char *str);
+
+    int str_starts_with(const char *str, const char *substring);
+    
+    int str_ends_with(const char *str, const char *substring);
+
+    char *str_remove_duplicates(const char *str);
+
+    char **str_split(const char *str, const char *delimiter, int *num_tokens);
+
+    int str_to_int(const char *str);
+    
+    double str_to_double(const char *str);
 
 
 #endif
