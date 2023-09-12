@@ -48,7 +48,7 @@
     * return:
     *   the same string with all the letters all uppercase
     */
-    void str_upper(char *str);
+    char* str_upper(const char *str);
 
     /* This function Convert a string to lowercase
     * function: str_lower
@@ -58,7 +58,7 @@
     * return:
     *   the same string with all the letters all lowercase
     */
-    void str_lower(char *str);
+    char* str_lower(const char *str);
 
     int str_starts_with(const char *str, const char *substring);
     

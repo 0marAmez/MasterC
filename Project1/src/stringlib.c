@@ -78,13 +78,11 @@ size_t find(const char*str, const char* sub_str){
 }
 
 // This function converts all the characters in a string to uppercase
-void str_upper(char *str){
+char* str_upper(char *str){
+
+
     // loop to go throught the string
-    for(unsigned int i = 0;i<strlen(str); i++){
-        if(isalpha(str[i])){
-            str[i] = toupper(str[i]); 
-        }
-    }
+
 }
 
 
