@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
+
 
 #ifndef STRINGLIB_H
 #define STRINGLIB_H
@@ -26,7 +28,7 @@
     *   const char*str  -> source string with the subject to search for.
     *   const char*sub_str -> substr to be found
     * return:
-    *   0 if sub_str not found or position index if found
+    *   -1 if sub_str not found or position index if found
     */
     size_t find(const char*str, const char* sub_str);
 
@@ -38,9 +40,25 @@
 
     char *str_trim(const char *str);
 
-    char *str_upper(const char *str);
-    
-    char *str_lower(const char *str);
+    /* This function Convert a string to uppercase
+    * function: str_upper
+    * parameters: 
+    *   char**str  ->  a pointer to a pointer to a character( the address of the char*).
+    *   
+    * return:
+    *   the same string with all the letters all uppercase
+    */
+    void str_upper(char *str);
+
+    /* This function Convert a string to lowercase
+    * function: str_lower
+    * parameters: 
+    *   char**str  ->  a pointer to a pointer to a character( the address of the char*).
+    *   
+    * return:
+    *   the same string with all the letters all lowercase
+    */
+    void str_lower(char *str);
 
     int str_starts_with(const char *str, const char *substring);
     

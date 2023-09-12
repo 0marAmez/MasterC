@@ -13,6 +13,10 @@ char* substr(const char*str,size_t pos, size_t len){
         fprintf(stderr, "**ERROR: Substring indices are out of bounds.\n");
         return NULL;
     }
+    if(strlen(str) == 1){
+        fprintf(stderr, "**ERROR: String is only one character long.\n");
+        return NULL;
+    }
     int unsigned n; // last index of the substr in str
     int unsigned substr_len; // length of the substr
     // if the user does not specify the length of substr it will use the rest of the characters to create the substr
@@ -42,35 +46,50 @@ char* substr(const char*str,size_t pos, size_t len){
     sub_str[substr_len] = '\0';
     return sub_str;
 }
+
 // This function searches the string for the first occurrence of the substr.
 size_t find(const char*str, const char* sub_str){
     // Check if the strings are empty or not
     if(str == NULL || sub_str == NULL){
         fprintf(stderr, "**ERROR: Invalid argument: NULL pointer.\n");
-        return 0;
+        return -1;
     }
     unsigned int str_n = strlen(str);
     unsigned int sub_str_n = strlen(sub_str);
-    unsigned int j = 0;
+
+    if(str_n == 0 || sub_str_n == 0){
+        fprintf(stderr, "**ERROR: Invalid argument: one of the strings is empty.\n");
+        return -1;
+    }
     size_t pos = 0;
 
     for(unsigned int i = 0; i<str_n; i++){
-        if(str[i] == sub_str[j]){
-            printf("%c \n",str[i]);
-            pos = i;
-            j++;
-            if(j == sub_str_n){
-                break;
+        if(str[i] == sub_str[pos]){
+            pos++;
+            if(pos == sub_str_n){
+                return i-pos+1;
             }
+
         }else{
             pos = 0;
-            j = 0;
         }
     }
+    return -1;
+}
 
-    if(pos!=0){
-        return pos-(sub_str_n-1);
-    }else{
-        return 0;
+// This function converts all the characters in a string to uppercase
+void str_upper(char *str){
+    // loop to go throught the string
+    for(unsigned int i = 0;i<strlen(str); i++){
+        if(isalpha(str[i])){
+            str[i] = toupper(str[i]); 
+        }
+    }
+}
+
+
+void str_lower(char *str){
+    for(unsigned int i = 0;i<strlen(str)-1; i++){
+        str[i] = tolower(str[i]); 
     }
 }
