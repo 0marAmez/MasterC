@@ -1,0 +1,37 @@
+Here's an example to illustrate the process:
+
+Let's convert the decimal value -5 to its 8-bit two's complement representation:
+
+    Start with the binary representation of the positive value 5: 00000101.
+
+    Since we are using an 8-bit representation, pad it with leading zeros: 00000101.
+
+    Flip all the bits: 11111010.
+
+    Add 1 to the resulting binary number: 11111011.
+
+The resulting binary representation is 11111011, which is the 8-bit two's complement representation of -5.
+
+It's important to note that in two's complement representation, the leftmost bit is the sign bit. If the sign bit is 1, 
+the number is negative, and if the sign bit is 0, the number is positive. The remaining bits represent the magnitude of the number.
+
+
+Here's an example to illustrate the process:
+
+Let's convert the binary value 11111011 to its corresponding decimal (integer) value:
+
+    The binary value has a width of 8 bits.
+
+    The leftmost bit is 1, indicating a negative number.
+
+    Perform two's complement on the remaining bits (remove the sign bit and flip the bits): 
+    
+    ~(11111011) = (00000100) //1'st complement
+    00000100 + 1 = 00000101
+    
+
+    Convert the resulting magnitude, 00000101, to decimal: 5.
+
+    Assign a negative sign to the decimal value obtained in step 4: -5.
+
+So, the binary value 11111011 represents the decimal value -5.
