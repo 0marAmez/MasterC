@@ -87,7 +87,5 @@ char* str_upper(char *str){
 
 
 void str_lower(char *str){
-    for(unsigned int i = 0;i<strlen(str)-1; i++){
-        str[i] = tolower(str[i]); 
-    }
+
 }
