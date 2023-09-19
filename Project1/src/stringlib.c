@@ -54,19 +54,22 @@ size_t find(const char*str, const char* sub_str){
         fprintf(stderr, "**ERROR: Invalid argument: NULL pointer.\n");
         return -1;
     }
-    unsigned int str_n = strlen(str);
-    unsigned int sub_str_n = strlen(sub_str);
+   
+    unsigned int str_n = strlen(str);  // size of the str
+    unsigned int sub_str_n = strlen(sub_str); // size of the substring
 
+    // Check for the size of the strings to validate arguments
     if(str_n == 0 || sub_str_n == 0){
         fprintf(stderr, "**ERROR: Invalid argument: one of the strings is empty.\n");
         return -1;
     }
     size_t pos = 0;
-
+    // Loop throught th string
     for(unsigned int i = 0; i<str_n; i++){
+        // Check if the characters match with the substr characters
         if(str[i] == sub_str[pos]){
             pos++;
-            if(pos == sub_str_n){
+            if(pos == sub_str_n){ // if the length is the same then we return the starting index
                 return i-pos+1;
             }
 
@@ -78,14 +81,53 @@ size_t find(const char*str, const char* sub_str){
 }
 
 // This function converts all the characters in a string to uppercase
-char* str_upper(char *str){
+char* str_upper(const char *str){
+    // Check if string is NULL
+    if(str == NULL){
+        fprintf(stderr, "**ERROR: Invalid argument: NULL pointer.\n");
+        return NULL;
+    }
+    // Check if the length of string is empty
+    if(strlen(str)==0){
+        fprintf(stderr, "**ERROR: Invalid argument: string is empty.\n");
+        return NULL;
+    }
+    // allocates memory for the string
+    char*upper = (char*)malloc(strlen(str)+1);
+    for(unsigned int i = 0;i<strlen(str);i++){
+        if(isalpha(str[i])==0){ // Ignores spaces,commans and any other special characters
+            upper[i] = str[i];
+        }else{
+            upper[i] = toupper(str[i]); // Makes characters to uppercase
+        }
+    }
+    upper[strlen(str)] = '\0';// null terminator
 
-
-    // loop to go throught the string
-
+    return upper;
 }
 
+// This function converts all the characters in a string to lowercase
+char* str_lower(const char *str){
+    // Check if string is NULL
+    if(str == NULL){
+        fprintf(stderr, "**ERROR: Invalid argument: NULL pointer.\n");
+        return NULL;
+    }
+    // Check if the length of string is empty
+    if(strlen(str)==0){
+        fprintf(stderr, "**ERROR: Invalid argument: string is empty.\n");
+        return NULL;
+    }
+    // allocates memory for the string
+    char*lower = (char*)malloc(strlen(str)+1);
+    for(unsigned int i = 0;i<strlen(str);i++){
+        if(isalpha(str[i])==0){ // Ignores spaces,commans and any other special characters
+            lower[i] = str[i];
+        }else{
+            lower[i] = tolower(str[i]); // Makes characters to uppercase
+        }
+    }
+    lower[strlen(str)] = '\0';// null terminator
 
-void str_lower(char *str){
-
+    return lower;
 }

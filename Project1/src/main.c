@@ -17,11 +17,13 @@ int main(void){
     char* lower = "can you help make all of this uppercase";
 
     printf("Before upper: %s \n",lower);
-    str_upper(lower);
-    printf("After upper: %s \n",lower);
+    char*test = str_upper(lower);
+    printf("After upper: %s \n",test);
+    char*test2 = str_lower(test);
+
     // printf("Before lower: %s \n",upper);
     // str_lower(lower);
-    // printf("After lower: %s \n",upper);
+    printf("After lower: %s \n",test2);
 
     free(new_str);
     return 0; 
