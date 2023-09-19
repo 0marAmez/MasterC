@@ -25,6 +25,9 @@ int main(void){
     // str_lower(lower);
     printf("After lower: %s \n",test2);
 
+    char* pi = "3.14159"; 
+    double pi_n = str_to_double(pi);
+    printf("pi: %lf\n",pi_n);
     free(new_str);
     return 0; 
 }

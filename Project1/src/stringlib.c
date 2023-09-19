@@ -131,3 +131,44 @@ char* str_lower(const char *str){
 
     return lower;
 }
+
+int str_to_int(const char *str){
+    // Check if string is NULL
+    if(str == NULL){
+        fprintf(stderr, "**ERROR: Invalid argument: NULL pointer.\n");
+        return -1;
+    }
+    // Check if the length of string is empty
+    if(strlen(str)==0){
+        fprintf(stderr, "**ERROR: Invalid argument: string is empty.\n");
+        return -1;
+    }
+
+    return atoi(str);
+
+}
+
+double str_to_double(const char *str){
+    // Check if string is NULL
+    if(str == NULL){
+        fprintf(stderr, "**ERROR: Invalid argument: NULL pointer.\n");
+        return -1;
+    }
+    // Check if the length of string is empty
+    if(strlen(str)==0){
+        fprintf(stderr, "**ERROR: Invalid argument: string is empty.\n");
+        return -1;
+    }
+
+    char* endptr; // Used to check for conversion errors
+    double result = strtol(str, &endptr, 10); // use function for conversion
+
+    // Conversion failed, handle error
+    // Check for conversion errors
+    if (str == endptr) {
+        fprintf(stderr, "**ERROR: Invalid input or conversion failed.\n");
+        return -1;
+    }
+
+    return result;
+}

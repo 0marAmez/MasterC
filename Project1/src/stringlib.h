@@ -68,8 +68,24 @@
 
     char **str_split(const char *str, const char *delimiter, int *num_tokens);
 
+    /* This function Convert a string to an integer
+    * function: str_to_int
+    * parameters: 
+    *   char**str  ->  a pointer to a pointer to a character( the address of the char*).
+    *   
+    * return:
+    *   integer with the value from the string
+    */
     int str_to_int(const char *str);
     
+    /* This function Convert a string to a double
+    * function: str_to_double
+    * parameters: 
+    *   char**str  ->  a pointer to a pointer to a character( the address of the char*).
+    *   
+    * return:
+    *   double with the value from the string
+    */
     double str_to_double(const char *str);
 
 
