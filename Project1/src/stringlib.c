@@ -79,6 +79,64 @@ size_t find(const char*str, const char* sub_str){
     }
     return -1;
 }
+// This function count the number of occurrences of a substring in a given string.
+int str_count(const char *str, const char *sub_str){
+    // Check if the strings are empty or not
+    if(str == NULL || sub_str == NULL){
+        fprintf(stderr, "**ERROR: Invalid argument: NULL pointer.\n");
+        return -1;
+    }
+   
+    unsigned int str_n = strlen(str);  // size of the str
+    unsigned int sub_str_n = strlen(sub_str); // size of the substring
+
+    // Check for the size of the strings to validate arguments
+    if(str_n == 0 || sub_str_n == 0){
+        fprintf(stderr, "**ERROR: Invalid argument: one of the strings is empty.\n");
+        return -1;
+    }
+    size_t pos = 0;
+    int ocurrances = 0;
+    // Loop throught th string
+    for(unsigned int i = 0; i<str_n; i++){
+        // Check if the characters match with the substr characters
+        if(str[i] == sub_str[pos]){
+            pos++;
+            if(pos == sub_str_n){ // if the length is the same then we return the starting index
+                ocurrances++;
+                pos = 0;
+            }
+
+        }else{
+            pos = 0;
+        }
+    }
+    if(ocurrances == 0){
+        return -1;
+    }
+    return ocurrances;
+}
+// This function  reverse the characters in a string
+char *str_reverse(const char *str){
+    // Check if the strings are empty or not
+    if(str == NULL || strlen(str)==0){
+        fprintf(stderr, "**ERROR: Invalid argument: NULL pointer.\n");
+        return NULL;
+    }
+    // Check if the strings are already reverse
+    if(strlen(str) == 1){
+        fprintf(stderr, "**ERROR: Invalid argument: One character string, already reversed.\n");
+        return NULL;
+    }
+    char*reverse = (char*)malloc(strlen(str)+1);
+    unsigned int j = strlen(str)-1;
+    for(unsigned int i = 0; i< strlen(str);i++){
+        reverse[i] = str[j];
+        j--;
+    }
+    reverse[strlen(str)] = '\0';
+    return reverse;
+}
 
 // This function converts all the characters in a string to uppercase
 char* str_upper(const char *str){
@@ -161,7 +219,7 @@ double str_to_double(const char *str){
     }
 
     char* endptr; // Used to check for conversion errors
-    double result = strtol(str, &endptr, 10); // use function for conversion
+    double result = strtod(str, &endptr); // Use the correct function for conversion
 
     // Conversion failed, handle error
     // Check for conversion errors

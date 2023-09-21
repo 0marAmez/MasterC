@@ -32,10 +32,25 @@
     */
     size_t find(const char*str, const char* sub_str);
 
-    char *str_replace(const char *str, const char *old_substring, const char *new_substring);
+    /* This function count the number of occurrences of a substring in a given string.
+    * function: count
+    * parameters: 
+    *   const char*str  -> source string with the subject to search for.
+    *   const char*sub_str -> substr to be found
+    * return:
+    *   -1 if sub_str not found or frequency found in str
+    */
+    int str_count(const char *str, const char *sub_str);
 
     char *str_replace(const char *str, const char *old_substring, const char *new_substring);
-    
+
+    /* This function  reverse the characters in a string.
+    * function: str_reverse
+    * parameters: 
+    *   const char*str  -> source string with the subject to search for.
+    * return:
+    *   return NULL if str is empty otherwise reverse the string
+    */
     char *str_reverse(const char *str);
 
     char *str_trim(const char *str);

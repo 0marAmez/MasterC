@@ -1,3 +1,52 @@
 C concepts notes:
 A const char* is a pointer to a constant character (read-only character) or a pointer to a constant C-style string.
 
+
+09/19/23
+
+sprintf:
+
+    sprintf stands for "string printf."
+
+    It is used for formatting data into a string.
+
+    It takes a format string and a variable number of arguments, similar to printf.
+
+    The formatted data is stored in a character array (string) specified as the first argument.
+
+    Example:
+
+    c
+
+    char buffer[100];
+    int num = 42;
+    sprintf(buffer, "The number is %d", num);
+
+    After executing this code, buffer will contain the string "The number is 42".
+
+sscanf:
+
+    sscanf stands for "string scanf."
+
+    It is used for parsing data from a string.
+
+    It takes a format string and a source string as its arguments.
+
+    It extracts data from the source string according to the format specified in the format string.
+
+    The extracted data is stored in variables specified as additional arguments.
+
+    Example:
+
+    c
+
+        char input[] = "The number is 123";
+        int num;
+        sscanf(input, "The number is %d", &num);
+
+        After executing this code, the variable num will be assigned the value 123.
+
+In summary, sprintf is used for formatting data into a string, while sscanf is used for parsing data from a string. 
+They are complementary functions often used for tasks like reading and writing data to and from files or user inputs when you need to convert between text and variables in C. 
+It's essential to provide proper format strings to ensure correct and safe behavior, as incorrect format strings can lead to unexpected results or security vulnerabilities like buffer overflows.
+
