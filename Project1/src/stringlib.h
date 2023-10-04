@@ -42,7 +42,7 @@
     */
     int str_count(const char *str, const char *sub_str);
 
-    char *str_replace(const char *str, const char *old_substring, const char *new_substring);
+    char *str_replace(const char *str, const char *old_substring, const char *new_substring); // COMPLETE
 
     /* This function  reverse the characters in a string.
     * function: str_reverse
@@ -53,6 +53,13 @@
     */
     char *str_reverse(const char *str);
 
+    /* This function Remove leading and trailing whitespace characters from a string.
+    * function: str_trim
+    * parameters: 
+    *   const char*str  -> source string with the subject to search for.
+    * return:
+    *   return NULL if str is empty otherwise trimmed string
+    */
     char *str_trim(const char *str);
 
     /* This function Convert a string to uppercase

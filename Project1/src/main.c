@@ -2,9 +2,9 @@
 
 int main(void){
     // char*str = "We think in generalities, but we live in details.";
-    char *str = "hello";
-    char*temp = str_reverse(str);
-    printf("Reverse string: %s\n",temp);
+    char *str = "   This is a string with leading and trailing spaces   ";
+    char*temp = str_trim(str);
+    printf("Reverse string:%s\n",temp);
     // printf("Hello ocurrance count: %d\n",str_count(str,"hello"));
     // char*new_str = substr(str,3,5); // think
     // printf("new string:%s\n", new_str);

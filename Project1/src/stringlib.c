@@ -138,6 +138,49 @@ char *str_reverse(const char *str){
     return reverse;
 }
 
+// This function  Remove leading and trailing whitespace characters from a string. --------> MODIFY
+char *str_trim(const char *str){
+    // Check if the strings are empty or not
+    if(str == NULL || strlen(str)==0){
+        fprintf(stderr, "**ERROR: Invalid argument: NULL pointer.\n");
+        return NULL;
+    }
+    // Check if the strings are already reverse
+    if(strlen(str) == 1){
+        fprintf(stderr, "**ERROR: Invalid argument: One character string, already reversed.\n");
+        return NULL;
+    }
+    // Check if it's all trimmed
+    if(str[0] !=' '&& str[strlen(str)-1] != ' '){
+        fprintf(stderr, "**ERROR: Invalid argument: String already trimmed.\n");
+        return NULL;
+    }
+    int spaces = 0;
+    int n = 0;
+    int k = 0;
+    if(str[0] !=' '&& str[strlen(str)-1] != ' '){
+        spaces = 2;
+    }else{
+        spaces = 1;
+    }
+    n = strlen(str)-spaces;
+    // allocates memory for a string
+    char * trim = (char*)malloc(n+1);
+
+    for (unsigned int i = 0; str[i] != '\0'; i++) {
+        if(str[i]!=' '){
+            trim[k] = str[i];
+            k++;
+        }
+    }
+
+    trim[n] = '\0';
+
+    return trim;
+
+}
+
+
 // This function converts all the characters in a string to uppercase
 char* str_upper(const char *str){
     // Check if string is NULL
