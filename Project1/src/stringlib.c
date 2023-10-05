@@ -168,7 +168,7 @@ char *str_trim(const char *str){
     char * trim = (char*)malloc(n+1);
 
     for (unsigned int i = 0; str[i] != '\0'; i++) {
-        if(str[i]!=' '){
+        if(str[i]==' '&&str[i+1]!=' '){
             trim[k] = str[i];
             k++;
         }
